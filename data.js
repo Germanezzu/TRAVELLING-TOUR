@@ -1,3 +1,5 @@
+window.TRAVELLING_META = {"lastStage":41,"players":106};
+
 window.TRAVELLING_DATA = [
 {"posizione":1,"giocatore":"David Caposiena","partite":66,"punti_pct":0.808080808080808,"punti":160,"gw":368,"gl":189,"diff_game":179,"partite_pct":0.53,"cards":8},
 {"posizione":2,"giocatore":"Nicolò Occhialini","partite":51,"punti_pct":0.784313725490196,"punti":120,"gw":278,"gl":162,"diff_game":116,"partite_pct":0.41,"cards":6},
@@ -106,3 +108,4 @@ window.TRAVELLING_DATA = [
 {"posizione":105,"giocatore":"Cesare Vaccarini","partite":3,"punti_pct":0,"punti":0,"gw":6,"gl":18,"diff_game":-12,"partite_pct":0.02,"cards":0},
 {"posizione":106,"giocatore":"Claudia Tarini","partite":3,"punti_pct":0,"punti":0,"gw":1,"gl":18,"diff_game":-17,"partite_pct":0.02,"cards":0}
 ];
+
