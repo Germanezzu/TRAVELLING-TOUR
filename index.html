@@ -1,326 +1,718 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07111f"><meta name="description" content="Classifica online Travelling Tour">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="TRAVELLING TOUR - Classifica ufficiale, tappe, Cards e statistiche">
 <title>TRAVELLING TOUR | Classifica ufficiale</title>
+
 <style>
-:root{--bg:#050914;--panel:#0a1322;--panel2:#0d1a2d;--line:#1e3553;--txt:#f6f9ff;--muted:#91a4bd;--cyan:#21e6ff;--blue:#3b7cff;--pink:#f13cff;--gold:#ffd45a;--silver:#c8d0dc;--bronze:#cd8b5a}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 15% -10%,#12346a 0,transparent 34%),radial-gradient(circle at 100% 10%,#3c0b50 0,transparent 30%),var(--bg);color:var(--txt);font-family:Inter,Segoe UI,Arial,sans-serif}.bg{position:fixed;inset:0;pointer-events:none;opacity:.14;background:url('assets/image1.png') center top/cover no-repeat;z-index:-1}
-header{position:sticky;top:0;z-index:20;background:rgba(5,9,20,.84);backdrop-filter:blur(16px);border-bottom:1px solid rgba(87,142,209,.2)}.nav{max-width:1320px;margin:auto;min-height:74px;padding:10px 22px;display:flex;align-items:center;gap:22px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:white}.brand img{width:160px;max-height:52px;object-fit:contain}.sponsor{height:44px;width:44px;object-fit:contain;margin-left:auto}.navlinks{display:flex;gap:20px;margin-left:auto}.navlinks a{color:#cbd8ea;text-decoration:none;font-weight:800;font-size:14px}.navlinks a:hover{color:var(--cyan)}
-.wrap{max-width:1320px;margin:auto;padding:28px 22px 70px}.hero{position:relative;overflow:hidden;min-height:360px;border:1px solid #23476e;border-radius:28px;padding:48px;background:linear-gradient(110deg,rgba(7,18,35,.97),rgba(10,14,31,.83)),url('assets/image4.png') center/cover}.hero:after{content:"";position:absolute;inset:auto -15% -55% 35%;height:320px;background:radial-gradient(circle,rgba(33,230,255,.25),transparent 65%)}.eyebrow{color:var(--cyan);font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:12px}.hero h1{position:relative;z-index:1;font-size:clamp(42px,7vw,82px);line-height:.9;margin:14px 0 20px;max-width:780px}.grad{background:linear-gradient(90deg,#fff,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{position:relative;z-index:1;color:#b9c8da;font-size:18px;max-width:700px;line-height:1.6}.heroStats{position:absolute;right:42px;bottom:35px;display:flex;gap:12px;z-index:2}.pill{background:rgba(5,11,22,.78);border:1px solid #2c527a;border-radius:18px;padding:14px 18px;min-width:145px}.pill small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.pill b{display:block;font-size:26px;margin-top:4px}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.card{background:linear-gradient(145deg,rgba(13,26,45,.94),rgba(7,14,26,.96));border:1px solid var(--line);border-radius:20px;box-shadow:0 16px 45px rgba(0,0,0,.22)}.stat{padding:20px}.stat small,.metric small{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:10px}.stat b{display:block;margin-top:8px;font-size:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.section{margin-top:30px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:14px}.sectionHead h2{margin:0;font-size:30px}.sub{color:var(--muted);margin:5px 0 0}.controls{display:flex;gap:10px;flex-wrap:wrap}.controls input,.controls select{background:#07111e;color:#fff;border:1px solid #29435f;border-radius:12px;padding:12px 14px;outline:none}.controls input{min-width:260px}.tableBox{overflow:auto;border-radius:20px;border:1px solid var(--line);background:rgba(7,14,25,.82)}table{border-collapse:collapse;width:100%;min-width:980px}th,td{padding:14px 13px;border-bottom:1px solid #182b44;text-align:left}th{position:sticky;top:0;background:#0c1829;color:#8fa5bf;font-size:11px;text-transform:uppercase;letter-spacing:.07em;z-index:2}tr.player{cursor:pointer}tr.player:hover{background:rgba(33,230,255,.06)}.rank{font-weight:950;font-size:17px}.r1{color:var(--gold)}.r2{color:var(--silver)}.r3{color:var(--bronze)}.pname{font-weight:850}.muted{color:var(--muted)}.bar{width:130px;height:7px;background:#142338;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--pink));border-radius:99px}.badge{display:inline-flex;align-items:center;justify-content:center;min-width:31px;height:25px;padding:0 8px;border-radius:99px;background:rgba(241,60,255,.12);border:1px solid rgba(241,60,255,.35);font-weight:900;color:#ff8aff}.stageGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.stage{padding:18px;text-align:center}.stage span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase}.stage b{display:block;font-size:30px;margin-top:3px;color:var(--cyan)}.topGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.top{padding:20px;cursor:pointer;position:relative;overflow:hidden}.top:after{content:"";position:absolute;inset:auto -30px -45px auto;width:120px;height:120px;background:radial-gradient(circle,rgba(33,230,255,.2),transparent 70%)}.top .num{font-size:30px;font-weight:950}.top .name{font-size:18px;font-weight:900;margin:10px 0 4px}.top .pct{color:var(--cyan);font-weight:900}
-footer{margin-top:45px;text-align:center;color:#70839d;padding:28px 0;border-top:1px solid #15283e}.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.76);display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modalBox{max-width:720px;width:100%;padding:28px;position:relative}.close{position:absolute;right:15px;top:10px;background:none;border:0;color:white;font-size:30px;cursor:pointer}.modalTitle{font-size:34px;font-weight:950;margin:0 45px 4px 0}.modalRank{color:var(--cyan);font-weight:850}.profile{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.metric{background:#081321;border:1px solid #1b334d;border-radius:15px;padding:16px}.metric b{display:block;font-size:24px;margin-top:5px}.metric.wide{grid-column:span 3}
-@media(max-width:1000px){.heroStats{position:static;margin-top:30px}.hero{min-height:auto}.cards{grid-template-columns:repeat(2,1fr)}.stageGrid{grid-template-columns:repeat(4,1fr)}.topGrid{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}@media(max-width:620px){.wrap{padding:18px 12px 45px}.nav{padding:8px 12px}.brand img{width:135px}.sponsor{display:none}.hero{padding:28px 22px;border-radius:22px}.hero h1{font-size:47px}.cards,.stageGrid,.topGrid{grid-template-columns:1fr 1fr}.profile{grid-template-columns:1fr 1fr}.metric.wide{grid-column:span 2}.controls{display:grid;grid-template-columns:1fr}.controls input{min-width:0;width:100%}.tableBox{border-radius:14px}}
-</style></head>
-<body><div class="bg"></div>
-<header><div class="nav"><a class="brand" href="#home"><img src="assets/image3.png" alt="Travelling Tour"></a><img class="sponsor" src="assets/image2.png" alt="Pesaro Padel"><nav class="navlinks"><a href="#home">HOME</a><a href="#classifica">CLASSIFICA</a><a href="#tappe">TAPPE</a><a href="#top8">TOP 8</a></nav></div></header>
+:root{
+  --bg:#07101d;
+  --panel:#172337;
+  --panel2:#202e43;
+  --line:#304158;
+  --txt:#f5f8fc;
+  --muted:#aab6c5;
+  --cyan:#00b0f0;
+  --yellow:#ffff00;
+  --green:#00b050;
+  --red:#ff0000;
+  --gold:#d4af37;
+  --silver:#c0c0c0;
+  --cards:#ffabfb;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#07101d;
+  color:var(--txt);
+  font-family:Arial,Segoe UI,sans-serif;
+}
+a{color:inherit}
+.wrap{max-width:1450px;margin:auto;padding:24px 20px 60px}
+header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(7,16,29,.94);
+  border-bottom:1px solid #24364e;
+  backdrop-filter:blur(12px)
+}
+.nav{
+  max-width:1450px;margin:auto;padding:12px 20px;
+  display:flex;align-items:center;gap:22px
+}
+.brand{
+  font-size:24px;font-weight:900;letter-spacing:.04em;
+  text-decoration:none
+}
+.brand span{color:var(--cyan)}
+.navlinks{display:flex;gap:20px;margin-left:auto}
+.navlinks a{
+  text-decoration:none;color:#d8e1ec;
+  font-size:13px;font-weight:800
+}
+.navlinks a:hover{color:var(--cyan)}
+
+
+/* LOGHI ORIGINALI DEL FILE EXCEL: non sostituire con loghi generati */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background-image:
+    linear-gradient(180deg,rgba(7,16,29,.32),rgba(7,16,29,.78)),
+    url("assets/format-header.png");
+  background-size:cover;
+  background-position:center;
+  border-color:#00b0f0;
+}
+.logoStrip{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:34px;
+  min-height:145px;
+  padding:8px 0 4px;
+}
+.logoTT{
+  width:min(470px,62vw);
+  max-height:130px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.18));
+}
+.logoPesaro{
+  width:118px;
+  height:118px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 10px rgba(0,176,240,.35));
+}
+.heroText{
+  text-align:center;
+  padding-top:2px;
+}
+.heroText h1{
+  display:none;
+}
+.heroText p{
+  color:#f5f8fc;
+  font-weight:700;
+}
+.heroText .eyebrow{
+  display:inline-block;
+  padding:5px 10px;
+  border:1px solid #00b0f0;
+  border-radius:999px;
+  background:rgba(7,16,29,.68);
+}
+footer{
+  background:
+    linear-gradient(180deg,rgba(7,16,29,.45),rgba(7,16,29,.9)),
+    url("assets/format-footer.png") center/cover;
+  border-top:1px solid #00b0f0;
+}
+@media(max-width:620px){
+  .logoStrip{gap:12px;min-height:105px}
+  .logoTT{width:68vw;max-height:92px}
+  .logoPesaro{width:78px;height:78px}
+}
+
+.hero{
+  margin-bottom:18px;
+  padding:28px 30px;
+  border:1px solid #304158;
+  border-radius:12px;
+  background:linear-gradient(120deg,#172337,#0d1829)
+}
+.heroTop{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:20px
+}
+.eyebrow{
+  color:var(--cyan);
+  font-size:12px;font-weight:900;
+  letter-spacing:.16em;text-transform:uppercase
+}
+h1{margin:8px 0 5px;font-size:42px;line-height:1}
+.hero p{margin:0;color:var(--muted)}
+.heroStats{display:flex;gap:10px}
+.pill{
+  min-width:140px;padding:12px 16px;
+  background:#0d1829;border:1px solid #304158;
+  border-radius:10px
+}
+.pill small{
+  display:block;color:var(--muted);
+  font-size:10px;text-transform:uppercase
+}
+.pill b{display:block;margin-top:5px;font-size:22px}
+
+.cards{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin:18px 0
+}
+.card{
+  background:linear-gradient(145deg,#202e43,#172337);
+  border:1px solid #304158;
+  border-radius:10px
+}
+.stat{padding:16px}
+.stat small{
+  color:var(--muted);font-size:10px;
+  text-transform:uppercase
+}
+.stat b{display:block;margin-top:6px;font-size:23px}
+
+.section{margin-top:28px}
+.sectionHead{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;gap:15px;
+  margin-bottom:12px
+}
+.sectionHead h2{margin:0;font-size:27px}
+.sub{margin:4px 0 0;color:var(--muted)}
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+.controls input,.controls select{
+  background:#0d1829;color:#fff;
+  border:1px solid #304158;
+  border-radius:7px;padding:10px 12px
+}
+.controls input{min-width:260px}
+
+.tableBox{
+  overflow:auto;
+  border:1px solid #304158;
+  border-radius:7px;
+  background:#172337
+}
+table{
+  width:100%;
+  min-width:1050px;
+  border-collapse:collapse
+}
+th,td{
+  border:0;
+  padding:7px 9px;
+  height:29px;
+  white-space:nowrap
+}
+th{
+  background:#202e43;
+  color:#fff;
+  font-size:12px;
+  text-align:center;
+  font-weight:900
+}
+th.cardsHead{color:var(--cards)}
+th.pointsHead{color:var(--cyan)}
+th.puntiHead{color:var(--yellow)}
+th.gwHead{color:var(--green)}
+th.glHead{color:var(--red)}
+
+tr.player{cursor:pointer}
+tr.player:nth-child(odd){background:#202e43}
+tr.player:nth-child(even){background:#172337}
+tr.player:hover{background:#263a54}
+
+.rank{
+  width:70px;
+  text-align:center;
+  font-weight:900;
+  font-size:14px
+}
+.rank.r1{background:var(--gold);color:#111}
+.rank.r2{background:var(--silver);color:#111}
+
+.rank.r3to8{background:var(--silver);color:#111}
+
+.pname{font-weight:700;min-width:190px}
+.center{text-align:center}
+
+.pointsPct{
+  position:relative;
+  min-width:150px;
+  text-align:center;
+  color:var(--cyan);
+  font-weight:900;
+  overflow:hidden
+}
+.pointsPct .bar{
+  position:absolute;left:0;top:0;bottom:0;
+  background:linear-gradient(90deg,#b8efd5,#d9f5e9);
+  opacity:.95;z-index:0
+}
+.pointsPct .value{position:relative;z-index:1}
+.pointsPct.low .value{color:var(--red)}
+.points{color:var(--yellow);font-weight:900;text-align:center}
+.gw{color:var(--green);font-weight:900;text-align:center}
+.gl{color:var(--red);font-weight:900;text-align:center}
+.diff{text-align:center;font-weight:900}
+.cardsCell{text-align:center;color:var(--cards);font-weight:900}
+.matchPct{text-align:center;color:#fff;font-weight:700}
+
+.stageGrid{
+  display:grid;grid-template-columns:repeat(8,1fr);gap:10px
+}
+.stage{
+  padding:14px;text-align:center;cursor:pointer
+}
+.stage:hover{border-color:var(--cyan)}
+.stage small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase}
+.stage b{display:block;margin:4px 0;font-size:28px;color:var(--cyan)}
+.stage div{font-size:11px;color:#dce5ef}
+
+.topGrid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px
+}
+.top{padding:16px;cursor:pointer}
+.top:hover{border-color:var(--cyan)}
+.top .num{font-size:26px;font-weight:900}
+.top .name{font-size:17px;font-weight:900;margin:7px 0}
+.top .pct{color:var(--cyan);font-weight:900}
+
+.profileGrid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:10px;margin-top:16px
+}
+.metric{
+  padding:14px;background:#0d1829;
+  border:1px solid #304158;border-radius:8px
+}
+.metric small{
+  color:var(--muted);font-size:10px;
+  text-transform:uppercase
+}
+.metric b{display:block;margin-top:5px;font-size:21px}
+.metric.wide{grid-column:span 4}
+
+.historyTable{
+  width:100%;min-width:650px;
+  border-collapse:collapse;margin-top:14px
+}
+.historyTable th,.historyTable td{
+  border-bottom:1px solid #304158;
+  padding:8px;text-align:center
+}
+.historyTable th{background:#202e43}
+.historyTable td:first-child,.historyTable th:first-child{text-align:left}
+
+.modal{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.78);
+  display:none;align-items:center;justify-content:center;
+  padding:18px
+}
+.modal.open{display:flex}
+.modalBox{
+  width:min(900px,100%);
+  max-height:90vh;overflow:auto;
+  padding:22px
+}
+.close{
+  float:right;border:0;background:none;
+  color:#fff;font-size:28px;cursor:pointer
+}
+.modalRank{color:var(--cyan);font-weight:900}
+.modalTitle{margin:3px 0;font-size:30px}
+.modalSub{color:var(--muted)}
+
+footer{
+  margin-top:40px;padding:22px 0;
+  border-top:1px solid #24364e;
+  text-align:center;color:#7f8ea3;font-size:12px
+}
+
+@media(max-width:1000px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .stageGrid{grid-template-columns:repeat(4,1fr)}
+  .topGrid{grid-template-columns:repeat(2,1fr)}
+  .profileGrid{grid-template-columns:repeat(2,1fr)}
+  .metric.wide{grid-column:span 2}
+}
+@media(max-width:620px){
+  .wrap{padding:14px 10px 40px}
+  .navlinks{display:none}
+  .heroTop{display:block}
+  .heroStats{margin-top:15px;display:grid;grid-template-columns:1fr 1fr}
+  .pill{min-width:0}
+  .cards{grid-template-columns:1fr 1fr}
+  .stageGrid,.topGrid{grid-template-columns:1fr 1fr}
+  .profileGrid{grid-template-columns:1fr 1fr}
+  .metric.wide{grid-column:span 2}
+  .controls{display:grid;grid-template-columns:1fr}
+  .controls input{min-width:0;width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#home">TRAVELLING <span>TOUR</span></a>
+    <nav class="navlinks">
+      <a href="#home">HOME</a>
+      <a href="#classifica">CLASSIFICA</a>
+      <a href="#tappe">TAPPE</a>
+      <a href="#top8">TOP 8</a>
+      <a href="#statistiche">STATISTICHE</a>
+    </nav>
+  </div>
+</header>
+
 <main class="wrap">
-<section id="home" class="hero"><div class="eyebrow">Campionato di Padel</div><h1>TRAVELLING<br><span class="grad">TOUR</span></h1><p>La classifica ufficiale online: risultati, statistiche, Cards e andamento dei giocatori in un unico posto.</p><div class="heroStats"><div class="pill"><small>Ultima tappa</small><b id="lastStage">—</b></div><div class="pill"><small>Giocatori</small><b id="players">—</b></div></div></section>
-<section class="cards"><div class="card stat"><small>Leader</small><b id="leader">—</b></div><div class="card stat"><small>% punti leader</small><b id="leaderPct">—</b></div><div class="card stat"><small>Partite totali</small><b id="totalMatches">—</b></div><div class="card stat"><small>Cards assegnate</small><b id="totalCards">—</b></div></section>
-<section id="classifica" class="section"><div class="sectionHead"><div><h2>Classifica</h2><p class="sub">Dati sincronizzati dal database del torneo.</p></div><div class="controls"><input id="search" type="search" placeholder="Cerca giocatore..."><select id="sort"><option value="pos">Posizione</option><option value="points_pct">% Punti</option><option value="diff">Diff. Game</option><option value="match_pct">% Partite</option><option value="cards">Cards</option></select></div></div><div class="tableBox"><table><thead><tr><th>#</th><th>Giocatore</th><th>Partite</th><th>% Punti</th><th>Punti</th><th>GW</th><th>GL</th><th>Diff.</th><th>% Partite</th><th>Cards</th></tr></thead><tbody id="ranking"></tbody></table></div></section>
-<section id="tappe" class="section"><div class="sectionHead"><div><h2>Tappe</h2><p class="sub">Progressione del Travelling Tour.</p></div></div><div class="stageGrid" id="stages"></div></section>
-<section id="top8" class="section"><div class="sectionHead"><div><h2>Top 8</h2><p class="sub">I primi otto della classifica attuale.</p></div></div><div class="topGrid" id="top"></div></section>
-<footer>TRAVELLING TOUR · Classifica online · Ultima tappa <span id="footStage">—</span></footer>
+
+<section id="home" class="hero">
+  <div class="logoStrip">
+    <img class="logoTT" src="assets/travelling-tour.png" alt="TRAVELLING TOUR">
+    <img class="logoPesaro" src="assets/pesaro-padel.png" alt="PESARO PADEL">
+  </div>
+  <div class="heroText">
+    <div class="eyebrow">Campionato di Padel</div>
+    <h1>TRAVELLING TOUR</h1>
+    <p>Classifica ufficiale, Tappe, Cards, statistiche e storico giocatori.</p>
+  </div>
+  <div class="heroStats">
+    <div class="pill"><small>Ultima Tappa</small><b id="lastStage">—</b></div>
+    <div class="pill"><small>Giocatori</small><b id="players">—</b></div>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="card stat"><small>Leader</small><b id="leader">—</b></div>
+  <div class="card stat"><small>% punti leader</small><b id="leaderPct">—</b></div>
+  <div class="card stat"><small>Partite totali</small><b id="totalMatches">—</b></div>
+  <div class="card stat"><small>Cards assegnate</small><b id="totalCards">—</b></div>
+</section>
+
+<section id="classifica" class="section">
+  <div class="sectionHead">
+    <div>
+      <h2>Classifica ufficiale</h2>
+      <p class="sub">Formato grafico ispirato al foglio "Format Immagine Classifica".</p>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Cerca giocatore...">
+      <select id="sort">
+        <option value="pos">Posizione</option>
+        <option value="points_pct">% Punti</option>
+        <option value="diff">Diff. Game</option>
+        <option value="match_pct">% Partite</option>
+        <option value="cards">Cards</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="tableBox">
+    <table>
+      <thead>
+        <tr>
+          <th>Posizione</th>
+          <th>Giocatore</th>
+          <th>Partite Giocate</th>
+          <th class="cardsHead">Cards</th>
+          <th class="pointsHead">% Punti effettuati</th>
+          <th class="puntiHead">Punti</th>
+          <th class="gwHead">GW</th>
+          <th class="glHead">GL</th>
+          <th>Diff. Game</th>
+          <th>% Partite giocate</th>
+        </tr>
+      </thead>
+      <tbody id="ranking"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="tappe" class="section">
+  <div class="sectionHead">
+    <div>
+      <h2>Storico Tappe</h2>
+      <p class="sub">Clicca una Tappa per vedere il riepilogo.</p>
+    </div>
+  </div>
+  <div class="stageGrid" id="stages"></div>
+</section>
+
+<section id="top8" class="section">
+  <div class="sectionHead">
+    <div>
+      <h2>Top 8</h2>
+      <p class="sub">Le prime otto posizioni della classifica attuale.</p>
+    </div>
+  </div>
+  <div class="topGrid" id="top"></div>
+</section>
+
+<section id="statistiche" class="section">
+  <div class="sectionHead">
+    <div>
+      <h2>Statistiche torneo</h2>
+      <p class="sub">Numeri aggiornati direttamente da Excel.</p>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card stat"><small>Tappe disputate</small><b id="statStages">—</b></div>
+    <div class="card stat"><small>Partite totali</small><b id="statMatches">—</b></div>
+    <div class="card stat"><small>Cards totali</small><b id="statCards">—</b></div>
+    <div class="card stat"><small>Ultimo aggiornamento</small><b id="statUpdated">—</b></div>
+  </div>
+</section>
+
+<footer>
+  TRAVELLING TOUR · Classifica online · Ultima Tappa <span id="footStage">—</span>
+</footer>
+
 </main>
-<div class="modal" id="modal"><div class="modalBox card"><button class="close" id="close">×</button><div class="modalRank" id="mRank"></div><h3 class="modalTitle" id="mName"></h3><div class="profile"><div class="metric"><small>Partite</small><b id="mMatches">—</b></div><div class="metric"><small>% Punti</small><b id="mPct">—</b></div><div class="metric"><small>Punti</small><b id="mPoints">—</b></div><div class="metric"><small>GW</small><b id="mGw">—</b></div><div class="metric"><small>GL</small><b id="mGl">—</b></div><div class="metric"><small>Diff. Game</small><b id="mDiff">—</b></div><div class="metric"><small>% Partite</small><b id="mMatchPct">—</b></div><div class="metric"><small>Cards</small><b id="mCards">—</b></div><div class="metric wide"><small>Stato classifica</small><b id="mStatus">Attivo</b></div></div></div></div>
+
+<div class="modal" id="modal">
+  <div class="modalBox card">
+    <button class="close" id="close">×</button>
+    <div class="modalRank" id="mRank"></div>
+    <h3 class="modalTitle" id="mName"></h3>
+    <div class="modalSub" id="mSub"></div>
+
+    <div class="profileGrid">
+      <div class="metric"><small>Partite</small><b id="mMatches">—</b></div>
+      <div class="metric"><small>% Punti</small><b id="mPct">—</b></div>
+      <div class="metric"><small>Punti</small><b id="mPoints">—</b></div>
+      <div class="metric"><small>Cards</small><b id="mCards">—</b></div>
+      <div class="metric"><small>GW</small><b id="mGw">—</b></div>
+      <div class="metric"><small>GL</small><b id="mGl">—</b></div>
+      <div class="metric"><small>Diff. Game</small><b id="mDiff">—</b></div>
+      <div class="metric"><small>% Partite</small><b id="mMatchPct">—</b></div>
+      <div class="metric wide">
+        <small>Storico Tappe</small>
+        <div style="overflow:auto">
+          <table class="historyTable">
+            <thead>
+              <tr>
+                <th>Tappa</th>
+                <th>Partite</th>
+                <th>Punti</th>
+                <th>GW</th>
+                <th>GL</th>
+                <th>Diff.</th>
+                <th>Cards</th>
+              </tr>
+            </thead>
+            <tbody id="playerHistory"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script>
 
 const RAW = window.TRAVELLING_DATA || [];
+const META = window.TRAVELLING_META || {};
+const STAGES = window.TRAVELLING_STAGES || [];
+const HISTORY = window.TRAVELLING_HISTORY || {};
 
 const D = {
-    meta: {
-        lastStage: 41,
-        players: RAW.length
-    },
-    rows: RAW.map(r => ({
-        pos: Number(r.posizione || 0),
-        player: r.giocatore || '',
-        matches: Number(r.partite || 0),
-        points_pct: Number(r.punti_pct || 0),
-        points: Number(r.punti || 0),
-        gw: Number(r.gw || 0),
-        gl: Number(r.gl || 0),
-        diff: Number(r.diff_game || 0),
-        match_pct: Number(r.partite_pct || 0),
-        cards: Number(r.cards || 0)
-    }))
+  meta: {
+    lastStage: Number(META.lastStage || 0),
+    players: RAW.length,
+    updatedAt: META.updatedAt || ''
+  },
+  rows: RAW.map(r => ({
+    pos: Number(r.posizione || 0),
+    player: r.giocatore || '',
+    matches: Number(r.partite || 0),
+    points_pct: Number(r.punti_pct || 0),
+    points: Number(r.punti || 0),
+    gw: Number(r.gw || 0),
+    gl: Number(r.gl || 0),
+    diff: Number(r.diff_game || 0),
+    match_pct: Number(r.partite_pct || 0),
+    cards: Number(r.cards || 0)
+  }))
 };
 
 const $ = id => document.getElementById(id);
 
-const pct = x =>
-    (Number(x || 0) * 100).toFixed(1) + '%';
+const pct = x => (Number(x || 0) * 100).toFixed(2) + '%';
 
-
-$('lastStage').textContent =
-    'Tappa ' + D.meta.lastStage;
-
-$('footStage').textContent =
-    D.meta.lastStage;
-
-$('players').textContent =
-    D.meta.players;
-
-$('leader').textContent =
-    D.rows[0]?.player || '—';
-
-$('leaderPct').textContent =
-    pct(D.rows[0]?.points_pct);
-
-$('totalMatches').textContent =
-    D.rows.reduce((a,r) => a + Number(r.matches || 0), 0)
-    .toLocaleString('it-IT');
-
-$('totalCards').textContent =
-    D.rows.reduce((a,r) => a + Number(r.cards || 0), 0)
-    .toLocaleString('it-IT');
-
-
-function render(list) {
-
-    $('ranking').innerHTML = list.map(r => `
-
-        <tr class="player"
-            data-player="${encodeURIComponent(r.player)}">
-
-            <td class="rank ${
-                r.pos === 1 ? 'r1' :
-                r.pos === 2 ? 'r2' :
-                r.pos === 3 ? 'r3' : ''
-            }">
-                ${r.pos}
-            </td>
-
-            <td class="pname">
-                ${r.player}
-            </td>
-
-            <td>
-                ${r.matches}
-            </td>
-
-            <td>
-                <b>${pct(r.points_pct)}</b>
-
-                <div class="bar">
-                    <i style="
-                        width:${Math.max(
-                            0,
-                            Math.min(100, r.points_pct * 100)
-                        )}%
-                    "></i>
-                </div>
-            </td>
-
-            <td>
-                ${r.points}
-            </td>
-
-            <td>
-                ${r.gw}
-            </td>
-
-            <td>
-                ${r.gl}
-            </td>
-
-            <td>
-                ${r.diff}
-            </td>
-
-            <td>
-                ${pct(r.match_pct)}
-            </td>
-
-            <td>
-                <span class="badge">
-                    ${r.cards}
-                </span>
-            </td>
-
-        </tr>
-
-    `).join('');
-
-    document.querySelectorAll('.player')
-        .forEach(x => {
-
-            x.onclick = () =>
-                openPlayer(
-                    decodeURIComponent(
-                        x.dataset.player
-                    )
-                );
-
-        });
+function fmt(n){
+  return Number(n || 0).toLocaleString('it-IT');
 }
 
+function render(list){
 
-function sorted() {
+  $('ranking').innerHTML = list.map(r => {
 
-    const q =
-        $('search').value
-        .trim()
-        .toLowerCase();
+    const rankClass =
+      r.pos === 1 ? 'r1' :
+      r.pos >= 2 && r.pos <= 8 ? 'r3to8' : '';
 
-    const s =
-        $('sort').value;
+    const width = Math.max(0,Math.min(100,r.points_pct * 100));
+    const low = r.points_pct < 0.40 ? 'low' : '';
 
-    let a =
-        D.rows.filter(r =>
-            r.player
-                .toLowerCase()
-                .includes(q)
-        );
+    return `
+      <tr class="player" data-player="${encodeURIComponent(r.player)}">
+        <td class="rank ${rankClass}">${r.pos}</td>
+        <td class="pname">${r.player}</td>
+        <td class="center">${r.matches}</td>
+        <td class="cardsCell">${r.cards}</td>
+        <td class="pointsPct ${low}">
+          <span class="bar" style="width:${width}%"></span>
+          <span class="value">${pct(r.points_pct)}</span>
+        </td>
+        <td class="points">${r.points}</td>
+        <td class="gw">${r.gw}</td>
+        <td class="gl">${r.gl}</td>
+        <td class="diff">${r.diff > 0 ? '+' : ''}${r.diff}</td>
+        <td class="matchPct">${pct(r.match_pct)}</td>
+      </tr>
+    `;
+  }).join('');
 
-    a.sort((x,y) => {
-
-        if (s === 'pos')
-            return x.pos - y.pos;
-
-        return Number(y[s] || 0)
-             - Number(x[s] || 0);
-
-    });
-
-    return a;
+  document.querySelectorAll('.player').forEach(x => {
+    x.onclick = () => openPlayer(decodeURIComponent(x.dataset.player));
+  });
 }
 
+function sorted(){
 
-$('search').oninput =
-    () => render(sorted());
+  const q = $('search').value.trim().toLowerCase();
+  const s = $('sort').value;
 
-$('sort').onchange =
-    () => render(sorted());
+  let a = D.rows.filter(r =>
+    r.player.toLowerCase().includes(q)
+  );
 
+  a.sort((x,y) => {
+    if(s === 'pos') return x.pos - y.pos;
+    return Number(y[s] || 0) - Number(x[s] || 0);
+  });
 
-function openPlayer(name) {
-
-    const r =
-        D.rows.find(x =>
-            x.player === name
-        );
-
-    if (!r) return;
-
-    $('mRank').textContent =
-        'POSIZIONE #' + r.pos;
-
-    $('mName').textContent =
-        r.player;
-
-    $('mMatches').textContent =
-        r.matches;
-
-    $('mPct').textContent =
-        pct(r.points_pct);
-
-    $('mPoints').textContent =
-        r.points;
-
-    $('mGw').textContent =
-        r.gw;
-
-    $('mGl').textContent =
-        r.gl;
-
-    $('mDiff').textContent =
-        r.diff;
-
-    $('mMatchPct').textContent =
-        pct(r.match_pct);
-
-    $('mCards').textContent =
-        r.cards;
-
-    $('modal').classList.add('open');
+  return a;
 }
 
+function openPlayer(name){
 
-$('close').onclick =
-    () => $('modal').classList.remove('open');
+  const r = D.rows.find(x => x.player === name);
+  if(!r) return;
 
+  $('mRank').textContent = 'POSIZIONE #' + r.pos;
+  $('mName').textContent = r.player;
+  $('mSub').textContent = 'Storico Travelling Tour';
+
+  $('mMatches').textContent = r.matches;
+  $('mPct').textContent = pct(r.points_pct);
+  $('mPoints').textContent = r.points;
+  $('mCards').textContent = r.cards;
+  $('mGw').textContent = r.gw;
+  $('mGl').textContent = r.gl;
+  $('mDiff').textContent = (r.diff > 0 ? '+' : '') + r.diff;
+  $('mMatchPct').textContent = pct(r.match_pct);
+
+  const history = HISTORY[name] || [];
+
+  $('playerHistory').innerHTML = history.map(h => `
+    <tr>
+      <td>Tappa ${h.tappa}</td>
+      <td>${h.partite}</td>
+      <td>${h.punti}</td>
+      <td>${h.gw}</td>
+      <td>${h.gl}</td>
+      <td>${h.diff > 0 ? '+' : ''}${h.diff}</td>
+      <td>${h.cards}</td>
+    </tr>
+  `).join('');
+
+  $('modal').classList.add('open');
+}
+
+function openStage(stageNo){
+
+  const s = STAGES.find(x => Number(x.tappa) === Number(stageNo));
+  if(!s) return;
+
+  $('mRank').textContent = 'TAPPA ' + s.tappa;
+  $('mName').textContent = 'Riepilogo Tappa ' + s.tappa;
+  $('mSub').textContent =
+    `${s.giocatori} giocatori · ${s.partite} partite · ${s.punti} punti · ${s.cards} Cards`;
+
+  $('mMatches').textContent = s.partite;
+  $('mPct').textContent = '—';
+  $('mPoints').textContent = s.punti;
+  $('mCards').textContent = s.cards;
+  $('mGw').textContent = '—';
+  $('mGl').textContent = '—';
+  $('mDiff').textContent = '—';
+  $('mMatchPct').textContent = '—';
+
+  $('playerHistory').innerHTML = `
+    <tr>
+      <td>Tappa ${s.tappa}</td>
+      <td>${s.partite}</td>
+      <td>${s.punti}</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>${s.cards}</td>
+    </tr>
+  `;
+
+  $('modal').classList.add('open');
+}
+
+$('search').oninput = () => render(sorted());
+$('sort').onchange = () => render(sorted());
+
+$('close').onclick = () => $('modal').classList.remove('open');
 
 $('modal').onclick = e => {
-
-    if (e.target === $('modal'))
-        $('modal').classList.remove('open');
-
+  if(e.target === $('modal')) $('modal').classList.remove('open');
 };
 
+$('lastStage').textContent = 'Tappa ' + D.meta.lastStage;
+$('footStage').textContent = D.meta.lastStage;
+$('players').textContent = D.meta.players;
 
-$('top').innerHTML =
-    D.rows
-        .slice(0,8)
-        .map(r => `
+$('leader').textContent = D.rows[0]?.player || '—';
+$('leaderPct').textContent = pct(D.rows[0]?.points_pct);
 
-            <div class="card top"
-                 data-name="${encodeURIComponent(r.player)}">
+const totalMatchRows = D.rows.reduce((a,r) => a + r.matches, 0);
+const totalMatches = Math.round(totalMatchRows / 4);
+const totalCards = D.rows.reduce((a,r) => a + r.cards, 0);
 
-                <div class="num">
-                    #${r.pos}
-                </div>
+$('totalMatches').textContent = fmt(totalMatches);
+$('totalCards').textContent = fmt(totalCards);
 
-                <div class="name">
-                    ${r.player}
-                </div>
+$('statStages').textContent = STAGES.length;
+$('statMatches').textContent = fmt(totalMatches);
+$('statCards').textContent = fmt(totalCards);
+$('statUpdated').textContent = D.meta.updatedAt || '—';
 
-                <div class="pct">
-                    ${pct(r.points_pct)}
-                    punti ·
-                    ${r.diff > 0 ? '+' : ''}
-                    ${r.diff} diff.
-                </div>
+$('top').innerHTML = D.rows.slice(0,8).map(r => `
+  <div class="card top" data-name="${encodeURIComponent(r.player)}">
+    <div class="num">#${r.pos}</div>
+    <div class="name">${r.player}</div>
+    <div class="pct">${pct(r.points_pct)} punti · ${r.diff > 0 ? '+' : ''}${r.diff} diff.</div>
+  </div>
+`).join('');
 
-            </div>
+document.querySelectorAll('.top').forEach(x => {
+  x.onclick = () => openPlayer(decodeURIComponent(x.dataset.name));
+});
 
-        `)
-        .join('');
+$('stages').innerHTML = STAGES.slice().reverse().map(s => `
+  <div class="card stage" data-stage="${s.tappa}">
+    <small>Tappa</small>
+    <b>${s.tappa}</b>
+    <div>${s.giocatori} giocatori · ${s.partite} partite</div>
+  </div>
+`).join('');
 
-
-document.querySelectorAll('.top')
-    .forEach(x => {
-
-        x.onclick = () =>
-            openPlayer(
-                decodeURIComponent(
-                    x.dataset.name
-                )
-            );
-
-    });
-
-
-let sg = '';
-
-for (
-    let i = D.meta.lastStage;
-    i >= 1;
-    i--
-) {
-
-    sg += `
-
-        <div class="card stage">
-
-            <span>Tappa</span>
-
-            <b>${i}</b>
-
-            <span>
-                Travelling Tour
-            </span>
-
-        </div>
-
-    `;
-
-}
-
-$('stages').innerHTML = sg;
-
+document.querySelectorAll('.stage').forEach(x => {
+  x.onclick = () => openStage(Number(x.dataset.stage));
+});
 
 render(D.rows);
 
