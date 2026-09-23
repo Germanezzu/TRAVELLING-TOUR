@@ -24,13 +24,306 @@ footer{margin-top:45px;text-align:center;color:#70839d;padding:28px 0;border-top
 <footer>TRAVELLING TOUR · Classifica online · Ultima tappa <span id="footStage">—</span></footer>
 </main>
 <div class="modal" id="modal"><div class="modalBox card"><button class="close" id="close">×</button><div class="modalRank" id="mRank"></div><h3 class="modalTitle" id="mName"></h3><div class="profile"><div class="metric"><small>Partite</small><b id="mMatches">—</b></div><div class="metric"><small>% Punti</small><b id="mPct">—</b></div><div class="metric"><small>Punti</small><b id="mPoints">—</b></div><div class="metric"><small>GW</small><b id="mGw">—</b></div><div class="metric"><small>GL</small><b id="mGl">—</b></div><div class="metric"><small>Diff. Game</small><b id="mDiff">—</b></div><div class="metric"><small>% Partite</small><b id="mMatchPct">—</b></div><div class="metric"><small>Cards</small><b id="mCards">—</b></div><div class="metric wide"><small>Stato classifica</small><b id="mStatus">Attivo</b></div></div></div></div>
-<script src="data.js"></script><script>
-const D=window.TT_DATA||{meta:{lastStage:0,players:0},rows:[]};const $=id=>document.getElementById(id);const pct=x=>(Number(x||0)*100).toFixed(1)+'%';
-$('lastStage').textContent='Tappa '+D.meta.lastStage;$('footStage').textContent=D.meta.lastStage;$('players').textContent=D.meta.players;$('leader').textContent=D.rows[0]?.player||'—';$('leaderPct').textContent=pct(D.rows[0]?.points_pct);$('totalMatches').textContent=D.rows.reduce((a,r)=>a+Number(r.matches||0),0).toLocaleString('it-IT');$('totalCards').textContent=D.rows.reduce((a,r)=>a+Number(r.cards||0),0).toLocaleString('it-IT');
-function render(list){$('ranking').innerHTML=list.map(r=>`<tr class="player" data-player="${encodeURIComponent(r.player)}"><td class="rank ${r.pos===1?'r1':r.pos===2?'r2':r.pos===3?'r3':''}">${r.pos}</td><td class="pname">${r.player}</td><td>${r.matches}</td><td><b>${pct(r.points_pct)}</b><div class="bar"><i style="width:${Math.max(0,Math.min(100,r.points_pct*100))}%"></i></div></td><td>${r.points}</td><td>${r.gw}</td><td>${r.gl}</td><td>${r.diff}</td><td>${pct(r.match_pct)}</td><td><span class="badge">${r.cards}</span></td></tr>`).join('');document.querySelectorAll('.player').forEach(x=>x.onclick=()=>openPlayer(decodeURIComponent(x.dataset.player)))}
-function sorted(){const q=$('search').value.trim().toLowerCase(),s=$('sort').value;let a=D.rows.filter(r=>r.player.toLowerCase().includes(q));a.sort((x,y)=>s==='pos'?x.pos-y.pos:(Number(y[s]||0)-Number(x[s]||0)));return a}$('search').oninput=()=>render(sorted());$('sort').onchange=()=>render(sorted());
-function openPlayer(name){const r=D.rows.find(x=>x.player===name);if(!r)return;$('mRank').textContent='POSIZIONE #'+r.pos;$('mName').textContent=r.player;$('mMatches').textContent=r.matches;$('mPct').textContent=pct(r.points_pct);$('mPoints').textContent=r.points;$('mGw').textContent=r.gw;$('mGl').textContent=r.gl;$('mDiff').textContent=r.diff;$('mMatchPct').textContent=pct(r.match_pct);$('mCards').textContent=r.cards;$('modal').classList.add('open')}$('close').onclick=()=>$('modal').classList.remove('open');$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('open')};
-$('top').innerHTML=D.rows.slice(0,8).map(r=>`<div class="card top" data-name="${encodeURIComponent(r.player)}"><div class="num">#${r.pos}</div><div class="name">${r.player}</div><div class="pct">${pct(r.points_pct)} punti · ${r.diff>0?'+':''}${r.diff} diff.</div></div>`).join('');document.querySelectorAll('.top').forEach(x=>x.onclick=()=>openPlayer(decodeURIComponent(x.dataset.name)));
-let sg='';for(let i=D.meta.lastStage;i>=1;i--)sg+=`<div class="card stage"><span>Tappa</span><b>${i}</b><span>Travelling Tour</span></div>`;$('stages').innerHTML=sg;
+<script src="data.js"></script>
+<script>
+
+const RAW = window.TRAVELLING_DATA || [];
+
+const D = {
+    meta: {
+        lastStage: 41,
+        players: RAW.length
+    },
+    rows: RAW.map(r => ({
+        pos: Number(r.posizione || 0),
+        player: r.giocatore || '',
+        matches: Number(r.partite || 0),
+        points_pct: Number(r.punti_pct || 0),
+        points: Number(r.punti || 0),
+        gw: Number(r.gw || 0),
+        gl: Number(r.gl || 0),
+        diff: Number(r.diff_game || 0),
+        match_pct: Number(r.partite_pct || 0),
+        cards: Number(r.cards || 0)
+    }))
+};
+
+const $ = id => document.getElementById(id);
+
+const pct = x =>
+    (Number(x || 0) * 100).toFixed(1) + '%';
+
+
+$('lastStage').textContent =
+    'Tappa ' + D.meta.lastStage;
+
+$('footStage').textContent =
+    D.meta.lastStage;
+
+$('players').textContent =
+    D.meta.players;
+
+$('leader').textContent =
+    D.rows[0]?.player || '—';
+
+$('leaderPct').textContent =
+    pct(D.rows[0]?.points_pct);
+
+$('totalMatches').textContent =
+    D.rows.reduce((a,r) => a + Number(r.matches || 0), 0)
+    .toLocaleString('it-IT');
+
+$('totalCards').textContent =
+    D.rows.reduce((a,r) => a + Number(r.cards || 0), 0)
+    .toLocaleString('it-IT');
+
+
+function render(list) {
+
+    $('ranking').innerHTML = list.map(r => `
+
+        <tr class="player"
+            data-player="${encodeURIComponent(r.player)}">
+
+            <td class="rank ${
+                r.pos === 1 ? 'r1' :
+                r.pos === 2 ? 'r2' :
+                r.pos === 3 ? 'r3' : ''
+            }">
+                ${r.pos}
+            </td>
+
+            <td class="pname">
+                ${r.player}
+            </td>
+
+            <td>
+                ${r.matches}
+            </td>
+
+            <td>
+                <b>${pct(r.points_pct)}</b>
+
+                <div class="bar">
+                    <i style="
+                        width:${Math.max(
+                            0,
+                            Math.min(100, r.points_pct * 100)
+                        )}%
+                    "></i>
+                </div>
+            </td>
+
+            <td>
+                ${r.points}
+            </td>
+
+            <td>
+                ${r.gw}
+            </td>
+
+            <td>
+                ${r.gl}
+            </td>
+
+            <td>
+                ${r.diff}
+            </td>
+
+            <td>
+                ${pct(r.match_pct)}
+            </td>
+
+            <td>
+                <span class="badge">
+                    ${r.cards}
+                </span>
+            </td>
+
+        </tr>
+
+    `).join('');
+
+    document.querySelectorAll('.player')
+        .forEach(x => {
+
+            x.onclick = () =>
+                openPlayer(
+                    decodeURIComponent(
+                        x.dataset.player
+                    )
+                );
+
+        });
+}
+
+
+function sorted() {
+
+    const q =
+        $('search').value
+        .trim()
+        .toLowerCase();
+
+    const s =
+        $('sort').value;
+
+    let a =
+        D.rows.filter(r =>
+            r.player
+                .toLowerCase()
+                .includes(q)
+        );
+
+    a.sort((x,y) => {
+
+        if (s === 'pos')
+            return x.pos - y.pos;
+
+        return Number(y[s] || 0)
+             - Number(x[s] || 0);
+
+    });
+
+    return a;
+}
+
+
+$('search').oninput =
+    () => render(sorted());
+
+$('sort').onchange =
+    () => render(sorted());
+
+
+function openPlayer(name) {
+
+    const r =
+        D.rows.find(x =>
+            x.player === name
+        );
+
+    if (!r) return;
+
+    $('mRank').textContent =
+        'POSIZIONE #' + r.pos;
+
+    $('mName').textContent =
+        r.player;
+
+    $('mMatches').textContent =
+        r.matches;
+
+    $('mPct').textContent =
+        pct(r.points_pct);
+
+    $('mPoints').textContent =
+        r.points;
+
+    $('mGw').textContent =
+        r.gw;
+
+    $('mGl').textContent =
+        r.gl;
+
+    $('mDiff').textContent =
+        r.diff;
+
+    $('mMatchPct').textContent =
+        pct(r.match_pct);
+
+    $('mCards').textContent =
+        r.cards;
+
+    $('modal').classList.add('open');
+}
+
+
+$('close').onclick =
+    () => $('modal').classList.remove('open');
+
+
+$('modal').onclick = e => {
+
+    if (e.target === $('modal'))
+        $('modal').classList.remove('open');
+
+};
+
+
+$('top').innerHTML =
+    D.rows
+        .slice(0,8)
+        .map(r => `
+
+            <div class="card top"
+                 data-name="${encodeURIComponent(r.player)}">
+
+                <div class="num">
+                    #${r.pos}
+                </div>
+
+                <div class="name">
+                    ${r.player}
+                </div>
+
+                <div class="pct">
+                    ${pct(r.points_pct)}
+                    punti ·
+                    ${r.diff > 0 ? '+' : ''}
+                    ${r.diff} diff.
+                </div>
+
+            </div>
+
+        `)
+        .join('');
+
+
+document.querySelectorAll('.top')
+    .forEach(x => {
+
+        x.onclick = () =>
+            openPlayer(
+                decodeURIComponent(
+                    x.dataset.name
+                )
+            );
+
+    });
+
+
+let sg = '';
+
+for (
+    let i = D.meta.lastStage;
+    i >= 1;
+    i--
+) {
+
+    sg += `
+
+        <div class="card stage">
+
+            <span>Tappa</span>
+
+            <b>${i}</b>
+
+            <span>
+                Travelling Tour
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+$('stages').innerHTML = sg;
+
+
 render(D.rows);
-</script></body></html>
+
+</script>
+</body>
+</html>
