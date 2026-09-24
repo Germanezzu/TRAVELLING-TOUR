@@ -36,7 +36,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
 .empty{padding:40px;text-align:center;color:#8492ad}.error{margin:18px 0;padding:14px 16px;border:1px solid #733044;background:#260c17;color:#ff9aae;border-radius:12px;display:none}
 @media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.top8{grid-template-columns:repeat(2,1fr)}.stage-grid{grid-template-columns:repeat(2,1fr)}.profile{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.page{width:100%}.hero{margin:0;border-radius:0;min-height:245px}.hero-content{min-height:245px}.nav{overflow:auto;justify-content:flex-start;padding-left:10px}.nav a{white-space:nowrap}.stats{grid-template-columns:repeat(2,1fr);padding:0 10px}.section{border-radius:14px}.section-head{align-items:flex-start;flex-direction:column}.controls{width:100%}.search{max-width:none;width:100%}.top8{grid-template-columns:1fr;padding:10px}.stage-grid{grid-template-columns:1fr;padding:10px}.profile{grid-template-columns:1fr 1fr}.logoTT{width:82vw}.logoPesaro{width:55vw}}
-.last-update-header{display:inline-block;margin-left:18px;padding:5px 11px;border:1px solid rgba(95,175,255,.35);border-radius:999px;background:rgba(4,18,45,.55);color:#a9cfff;font-size:11px;font-weight:700;letter-spacing:.5px;vertical-align:middle}@media(max-width:700px){.last-update-header{display:block;margin:7px 0 0;font-size:10px;width:max-content}}</style>
+.last-update-header{display:inline-block;margin-left:16px;padding:5px 11px;border:1px solid rgba(95,175,255,.35);border-radius:999px;background:rgba(4,18,45,.55);color:#a9cfff;font-size:11px;font-weight:700;letter-spacing:.4px;vertical-align:middle}.hero-title .last-update-header{font-weight:700}@media(max-width:700px){.last-update-header{display:block;margin:7px auto 0;font-size:10px;width:max-content}}</style>
 </head>
 <body>
 <div class="page">
@@ -44,7 +44,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
     <div class="hero-content">
       <img class="logoTT" src="assets/travelling-tour.png" alt="TRAVELLING TOUR" onerror="this.onerror=null;this.src='assets/image3.png'">
       <img class="logoPesaro" src="assets/pesaro-padel.png" alt="PESARO PADEL" onerror="this.onerror=null;this.src='assets/image2.png'">
-      <div class="hero-title">Classifica ufficiale • aggiornamento automatico da Excel</div>
+      <div class="hero-title">CLASSIFICA UFFICIALE <span id="lastUpdateHeader" class="last-update-header"></span></div>
     </div>
   </div>
 
@@ -58,7 +58,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
 
   <section class="section" id="classifica">
     <div class="section-head">
-      <div><h2>🏆 CLASSIFICA TRAVELLING TOUR</h2><div class="sub">Ordinamento e valori direttamente dal file pubblicato da Excel</div></div>
+      <div><h2>🏆 CLASSIFICA TRAVELLING TOUR</h2><div class="sub">Classifica ufficiale</div></div>
       <div class="controls"><input id="search" class="search" placeholder="Cerca giocatore..." autocomplete="off"></div>
     </div>
     <div class="table-wrap">
@@ -67,7 +67,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
         <tbody id="ranking"></tbody>
       </table>
     </div>
-    <div class="legend"><span><i class="dot g"></i>≥ 50%</span><span><i class="dot y"></i>40%–49%</span><span><i class="dot r"></i>&lt; 40%</span><span>Le barre della partecipazione seguono la logica del foglio Excel “Format Immagine Classifica”.</span></div>
+    <div class="legend"><span><i class="dot g"></i>≥ 50%</span><span><i class="dot y"></i>40%–49%</span><span><i class="dot r"></i>&lt; 40%</span><span>Le barre indicano la percentuale di partite giocate.</span></div>
   </section>
 
   <section class="section" id="top8">
@@ -85,7 +85,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
       <img src="assets/travelling-tour.png" alt="TRAVELLING TOUR" onerror="this.onerror=null;this.src='assets/image3.png'">
       <img src="assets/pesaro-padel.png" alt="PESARO PADEL" onerror="this.onerror=null;this.src='assets/image2.png'">
     </div>
-    <p>TRAVELLING TOUR • Classifica ufficiale • dati sincronizzati automaticamente da Excel</p>
+    <p>TRAVELLING TOUR • Classifica ufficiale</p>
   </footer>
 </div>
 
@@ -105,6 +105,17 @@ const DATA = Array.isArray(window.TRAVELLING_DATA) ? window.TRAVELLING_DATA : []
 const META = window.TRAVELLING_META || {};
 const STAGES = Array.isArray(window.TRAVELLING_STAGES) ? window.TRAVELLING_STAGES : [];
 const HISTORY = window.TRAVELLING_HISTORY || {};
+
+function aggiornaDataHeader(){
+  const el = document.getElementById('lastUpdateHeader');
+  if(!el) return;
+  const raw = META.updatedAt;
+  if(!raw){ el.textContent=''; return; }
+  const s = String(raw).replace('T',' ');
+  const m = s.match(/(\d{4})-(\d{2})-(\d{2})[ ](\d{2}):(\d{2})/);
+  el.textContent = m ? '🕒 ' + m[3] + '/' + m[2] + '/' + m[1] + ' • ' + m[4] + ':' + m[5] : '🕒 ' + s;
+}
+aggiornaDataHeader();
 
 const $ = id => document.getElementById(id);
 const pct = v => (Number(v||0)*100).toFixed(0)+'%';
