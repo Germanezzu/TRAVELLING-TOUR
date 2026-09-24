@@ -170,6 +170,241 @@ body:after{
   text-shadow:0 0 8px rgba(255,45,70,.18);
   font-weight:900 !important;
 }
+
+/* =========================================================
+   TRAVELLING TOUR — NEON PADEL / PRO GRAPHIC THEME
+   ========================================================= */
+:root{
+  --bg0:#020613;
+  --bg1:#06132c;
+  --bg2:#0a1740;
+  --cyan:#00d9ff;
+  --blue:#168cff;
+  --violet:#8b2cff;
+  --magenta:#ef18ff;
+  --green:#18e3a0;
+  --yellow:#ffd52e;
+  --red:#ff4059;
+  --text:#f5f8ff;
+  --muted:#8fa7c9;
+  --panel:rgba(5,17,45,.88);
+  --panel2:rgba(7,24,58,.94);
+  --line:rgba(57,128,220,.45);
+}
+
+/* Sfondo globale */
+html,body{
+  min-height:100%;
+  background:
+    radial-gradient(circle at 8% 18%,rgba(0,217,255,.18),transparent 25%),
+    radial-gradient(circle at 92% 16%,rgba(239,24,255,.17),transparent 26%),
+    radial-gradient(circle at 50% 100%,rgba(22,140,255,.12),transparent 36%),
+    linear-gradient(135deg,var(--bg0) 0%,var(--bg1) 42%,#080725 72%,#030510 100%) !important;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-3;
+  opacity:.65;
+  background:
+    linear-gradient(115deg,transparent 0 12%,rgba(0,217,255,.055) 12.2%,transparent 12.5%),
+    linear-gradient(245deg,transparent 0 82%,rgba(239,24,255,.05) 82.2%,transparent 82.5%);
+}
+body:after{
+  content:"";
+  position:fixed;
+  width:520px;height:520px;
+  left:-240px;bottom:-180px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:-2;
+  background:radial-gradient(circle,rgba(0,217,255,.13),transparent 67%);
+  box-shadow:calc(100vw + 0px) -120px 0 80px rgba(239,24,255,.07);
+}
+
+/* Header */
+header,.hero,.hero-header,.site-header{
+  position:relative;
+}
+header:after,.hero:after,.hero-header:after,.site-header:after{
+  content:"";
+  position:absolute;
+  left:3%;
+  right:3%;
+  bottom:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),var(--magenta),transparent);
+  box-shadow:0 0 16px rgba(0,217,255,.45),0 0 18px rgba(239,24,255,.35);
+}
+
+/* Navigazione: barra neon arrotondata */
+nav,.nav,.menu{
+  background:linear-gradient(90deg,rgba(2,10,29,.97),rgba(8,14,42,.97),rgba(20,5,37,.97)) !important;
+  border:1px solid rgba(57,128,220,.45) !important;
+  box-shadow:0 0 22px rgba(0,120,255,.11), inset 0 0 22px rgba(139,44,255,.07);
+  border-radius:18px !important;
+}
+nav a,.nav a,.menu a{
+  border-radius:999px;
+  transition:.2s ease;
+}
+nav a:hover,.nav a:hover,.menu a:hover{
+  background:linear-gradient(90deg,rgba(0,217,255,.16),rgba(239,24,255,.13));
+  box-shadow:0 0 15px rgba(0,217,255,.18);
+}
+
+/* Schede riepilogo */
+.stat{
+  background:
+    linear-gradient(135deg,rgba(8,28,65,.96),rgba(5,13,34,.96)) !important;
+  border:1px solid rgba(48,129,225,.55) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 0 18px rgba(0,120,255,.08);
+  border-radius:15px !important;
+}
+.stat:nth-child(2){box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 20px rgba(0,217,255,.10)}
+.stat:nth-child(3){box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 20px rgba(255,183,0,.09)}
+.stat:nth-child(4){box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 20px rgba(239,24,255,.11)}
+.stat:nth-child(5){box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 20px rgba(0,217,255,.10)}
+.stat .v{color:#fff !important;text-shadow:0 0 12px rgba(0,217,255,.16)}
+.stat .k{color:#a8c4e9 !important}
+
+/* Pannelli */
+.card,.panel,.section,.ranking-box,.hero-box{
+  background:
+    linear-gradient(145deg,rgba(7,24,57,.96),rgba(3,10,28,.97)) !important;
+  border:1px solid rgba(48,129,225,.46) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 0 28px rgba(0,96,190,.08);
+  border-radius:18px !important;
+}
+.card:before,.panel:before,.section:before,.ranking-box:before,.hero-box:before{
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent) !important;
+  opacity:.8 !important;
+}
+
+/* Titoli sezione */
+h1,h2,h3{
+  text-shadow:0 0 18px rgba(0,217,255,.10);
+}
+.section h2,.ranking-box h2{
+  color:#fff !important;
+}
+
+/* Classifica: look premium */
+.rank-table{
+  background:rgba(2,9,24,.88) !important;
+  border:1px solid rgba(38,112,210,.55) !important;
+  box-shadow:0 0 28px rgba(0,108,255,.10),0 0 30px rgba(155,20,255,.06);
+  overflow:hidden;
+}
+.rank-table thead th{
+  background:linear-gradient(90deg,#071936,#0b2146,#151039) !important;
+  color:#d8edff !important;
+  border-bottom:1px solid rgba(0,217,255,.25) !important;
+}
+.rank-table tbody tr:nth-child(odd){
+  background:linear-gradient(90deg,rgba(8,27,58,.94),rgba(5,17,40,.94)) !important;
+}
+.rank-table tbody tr:nth-child(even){
+  background:linear-gradient(90deg,rgba(4,18,42,.94),rgba(8,13,34,.94)) !important;
+}
+.rank-table tbody tr:hover{
+  background:linear-gradient(90deg,rgba(0,217,255,.12),rgba(139,44,255,.12)) !important;
+  box-shadow:inset 0 0 20px rgba(0,217,255,.06);
+}
+.rank-table td{
+  border-color:rgba(50,94,153,.27) !important;
+}
+
+/* Colonna % punti: pannello ciano come nell'anteprima */
+.rank-table td.pct{
+  background:linear-gradient(180deg,rgba(0,217,255,.13),rgba(0,122,255,.07)) !important;
+  color:#00cfff !important;
+  text-shadow:0 0 10px rgba(0,217,255,.16);
+}
+.rank-table td.pct-low{
+  color:#ff4059 !important;
+  text-shadow:0 0 9px rgba(255,64,89,.28) !important;
+}
+
+/* Posizioni: 1 oro, 2-8 argento */
+.rank.r1{
+  background:linear-gradient(135deg,#ffe76b,#e0a800) !important;
+  color:#111 !important;
+  box-shadow:inset 0 0 14px rgba(255,255,255,.22),0 0 12px rgba(255,205,30,.25);
+}
+.rank.r2to8{
+  background:linear-gradient(135deg,#f7fbff,#aab6c9) !important;
+  color:#172235 !important;
+  box-shadow:inset 0 0 10px rgba(255,255,255,.25);
+}
+
+/* Numeri KPI */
+.pct,.points,.gw,.gl,.diff{
+  text-shadow:0 0 8px rgba(0,217,255,.08);
+}
+
+/* Barre partecipazione */
+.progress,.bar,.track{
+  background:#0a1935 !important;
+  border:1px solid rgba(70,116,177,.48) !important;
+  box-shadow:inset 0 0 7px rgba(0,0,0,.45);
+}
+.progress > div,.bar > div,.track > div{
+  box-shadow:0 0 9px rgba(0,217,255,.18);
+}
+
+/* Ricerca e selettori */
+input,select{
+  background:rgba(3,13,32,.90) !important;
+  border:1px solid rgba(52,117,196,.60) !important;
+  color:#fff !important;
+  box-shadow:inset 0 0 12px rgba(0,120,255,.05);
+}
+input:focus,select:focus{
+  outline:none;
+  border-color:var(--cyan) !important;
+  box-shadow:0 0 0 2px rgba(0,217,255,.08),0 0 18px rgba(0,217,255,.12);
+}
+
+/* Pulsanti */
+button,.btn,.chip{
+  background:linear-gradient(135deg,#0a244b,#171041) !important;
+  border:1px solid rgba(74,135,219,.65) !important;
+  color:#fff !important;
+  box-shadow:0 0 12px rgba(0,120,255,.07);
+}
+button:hover,.btn:hover{
+  border-color:var(--cyan) !important;
+  box-shadow:0 0 18px rgba(0,217,255,.20),0 0 16px rgba(239,24,255,.10);
+}
+
+/* Testi evidenziati */
+a{color:#b9e9ff}
+a:hover{color:#00d9ff}
+
+/* Effetto bordo neon per il blocco classifica */
+#classifica,.classifica-section{
+  position:relative;
+}
+#classifica:before,.classifica-section:before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:20px;
+  pointer-events:none;
+  background:linear-gradient(120deg,rgba(0,217,255,.65),transparent 25%,transparent 72%,rgba(239,24,255,.65));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  padding:1px;
+  opacity:.7;
+}
 </style>
 </head>
 <body>
