@@ -11,18 +11,18 @@
   --cyan:#19d9ff;--blue:#2f70ff;--magenta:#e600ff;--green:#16d97a;--yellow:#ffd83d;--red:#ff3f5f;
   --gold:#ffd34d;--silver:#cbd2dc;--bronze:#d58b5b;
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#101a3d 0,#050815 36%,#02030a 100%);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#071126 0%,#080d1d 38%,#050817 72%,#070916 100%);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
 a{color:inherit;text-decoration:none}button,input{font:inherit}
-.page{width:min(1440px,96%);margin:auto}
+.page{width:min(1440px,96%);margin:auto;position:relative}.page:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 0%,rgba(0,112,255,.10),transparent 34%),radial-gradient(circle at 85% 0%,rgba(190,0,255,.08),transparent 34%);z-index:-1}
 .hero{position:relative;margin:18px 0 16px;border:1px solid #27375b;border-radius:22px;overflow:hidden;min-height:285px;background:#050815 url('assets/format-header.png') center/cover no-repeat;box-shadow:0 0 50px rgba(0,120,255,.15),0 0 70px rgba(230,0,255,.08)}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.04),rgba(0,0,0,.25));pointer-events:none}
 .hero-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:285px;padding:28px 18px;text-align:center}
-.logoTT{width:min(430px,78vw);max-height:120px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(0,220,255,.28))}
+.logoTT{width:min(560px,88vw);max-height:155px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(0,220,255,.28))}
 .logoPesaro{width:min(235px,48vw);max-height:82px;object-fit:contain;margin-top:12px;filter:drop-shadow(0 0 12px rgba(255,255,255,.16))}
 .hero-title{margin:12px 0 0;font-size:14px;letter-spacing:4px;text-transform:uppercase;font-weight:800;color:#dbe6ff}
 .nav{position:sticky;top:0;z-index:20;display:flex;justify-content:center;gap:8px;padding:10px;background:rgba(3,5,13,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(78,104,158,.25)}
 .nav a{padding:10px 15px;border:1px solid #283754;border-radius:999px;color:#b7c5e0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.6px}.nav a:hover{border-color:var(--cyan);color:white;box-shadow:0 0 18px rgba(25,217,255,.15)}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}.stat{background:linear-gradient(145deg,rgba(12,19,39,.96),rgba(5,8,18,.96));border:1px solid var(--line);border-radius:15px;padding:14px;text-align:center}.stat .v{font-size:25px;font-weight:900}.stat .k{margin-top:4px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}.stat{background:linear-gradient(145deg,rgba(12,19,39,.96),rgba(5,8,18,.96));border:1px solid var(--line);border-radius:15px;padding:14px;text-align:center}.stat .v{font-size:25px;font-weight:900}.stat .k{margin-top:5px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}
 .section{margin:16px 0;background:rgba(5,8,17,.86);border:1px solid #1c2942;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.2)}
 .section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 20px;border-bottom:1px solid #1c2942;background:linear-gradient(90deg,rgba(18,31,63,.75),rgba(12,14,31,.45))}.section-head h2{margin:0;font-size:20px;letter-spacing:.4px}.section-head .sub{color:var(--muted);font-size:12px}
 .controls{display:flex;gap:10px;align-items:center}.search{width:270px;max-width:55vw;padding:10px 13px;background:#050916;border:1px solid #2a3b5e;color:#fff;border-radius:10px;outline:none}.search:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(25,217,255,.08)}
@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
   </div>
 
   <nav class="nav">
-    <a href="#home">Home</a><a href="#classifica">Classifica</a><a href="#top8">Top 8</a><a href="#tappe">Tappe</a>
+    <a href="#home">🏠 Home</a><a href="#classifica">🏆 Classifica</a><a href="#top8">⭐ Top 8</a><a href="#tappe">🎾 Tappe</a>
   </nav>
 
   <div id="loadError" class="error"></div>
@@ -108,6 +108,7 @@ const HISTORY = window.TRAVELLING_HISTORY || {};
 
 const $ = id => document.getElementById(id);
 const pct = v => (Number(v||0)*100).toFixed(0)+'%';
+const pct2 = v => (Number(v||0)*100).toFixed(2)+'%';
 const num = v => Number(v||0).toLocaleString('it-IT');
 const esc = s => String(s ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 function barClass(v){ v=Number(v||0); return v>=.50?'green':v>=.40?'yellow':'red'; }
@@ -117,11 +118,11 @@ function renderStats(){
   const totalCards = DATA.reduce((s,x)=>s+Number(x.cards||0),0);
   const leader = DATA[0] || {};
   $('stats').innerHTML = `
-    <div class="stat"><div class="v">${num(META.lastStage||STAGES.length||0)}</div><div class="k">Ultima tappa</div></div>
-    <div class="stat"><div class="v">${num(META.players||DATA.length)}</div><div class="k">Giocatori</div></div>
-    <div class="stat"><div class="v">${esc(leader.giocatore||'—')}</div><div class="k">Leader</div></div>
-    <div class="stat"><div class="v">${leader.punti_pct!=null?pct(leader.punti_pct):'—'}</div><div class="k">% punti leader</div></div>
-    <div class="stat"><div class="v">${num(totalMatches)}</div><div class="k">Partite totali</div></div>`;
+    <div class="stat"><div class="v">${num(META.lastStage||STAGES.length||0)}</div><div class="k">🎾 Ultima tappa</div></div>
+    <div class="stat"><div class="v">${num(META.players||DATA.length)}</div><div class="k">👥 Giocatori</div></div>
+    <div class="stat"><div class="v">${esc(leader.giocatore||'—')}</div><div class="k">🏆 Leader</div></div>
+    <div class="stat"><div class="v">${leader.punti_pct!=null?pct2(leader.punti_pct):'—'}</div><div class="k">📊 % punti leader</div></div>
+    <div class="stat"><div class="v">${num(totalMatches)}</div><div class="k">🎾 Partite totali</div></div>`;
 }
 function row(x){
   const p=Number(x.posizione||0), m=Number(x.partite_pct||0);
@@ -129,7 +130,7 @@ function row(x){
     <td class="rank ${posClass(p)}">${p}</td>
     <td class="player"><a href="#" onclick="openPlayer(${JSON.stringify(String(x.giocatore)).replace(/'/g,"&#39;")});return false">${esc(x.giocatore)}</a></td>
     <td class="num">${num(x.partite)}</td>
-    <td class="pct num">${pct(x.punti_pct)}</td>
+    <td class="pct num">${pct2(x.punti_pct)}</td>
     <td class="num">${num(x.punti)}</td>
     <td class="num">${num(x.gw)}</td>
     <td class="num">${num(x.gl)}</td>
@@ -146,7 +147,7 @@ function renderTop(){
   $('topCards').innerHTML = DATA.slice().sort((a,b)=>Number(a.posizione||0)-Number(b.posizione||0)).slice(0,8).map(x=>`<div class="top-card" onclick="openPlayer(${JSON.stringify(String(x.giocatore))})">
     <div class="top-pos">#${x.posizione}</div><div class="top-name">${esc(x.giocatore)}</div>
     <div class="top-meta"><span>${num(x.partite)} partite</span><span>Diff ${Number(x.diff_game||0)>0?'+':''}${num(x.diff_game)}</span><span>🃏 ${num(x.cards)}</span></div>
-    <div class="top-pct">${pct(x.punti_pct)} <span style="font-size:12px;color:#8493ad;font-weight:700">punti</span></div>
+    <div class="top-pct">${pct2(x.punti_pct)} <span style="font-size:12px;color:#8493ad;font-weight:700">punti</span></div>
   </div>`).join('');
 }
 function renderStages(){
@@ -155,8 +156,8 @@ function renderStages(){
 window.openPlayer = function(name){
   const x=DATA.find(p=>p.giocatore===name); if(!x)return;
   $('modalTitle').textContent=x.giocatore;
-  $('modalSub').textContent='Posizione #'+x.posizione+' • '+pct(x.punti_pct)+' punti • '+pct(x.partite_pct)+' partecipazione';
-  $('profile').innerHTML=[['Posizione','#'+x.posizione],['Partite',x.partite],['Punti',x.punti],['GW',x.gw],['GL',x.gl],['Diff. Game',(Number(x.diff_game)>=0?'+':'')+x.diff_game],['% Punti',pct(x.punti_pct)],['% Partite',pct(x.partite_pct)],['Cards','🃏 '+x.cards],['Tappe',HISTORY[name]?HISTORY[name].length:0]].map(a=>`<div class="box"><div class="label">${a[0]}</div><div class="value">${esc(a[1])}</div></div>`).join('');
+  $('modalSub').textContent='Posizione #'+x.posizione+' • '+pct2(x.punti_pct)+' punti • '+pct(x.partite_pct)+' partecipazione';
+  $('profile').innerHTML=[['Posizione','#'+x.posizione],['Partite',x.partite],['Punti',x.punti],['GW',x.gw],['GL',x.gl],['Diff. Game',(Number(x.diff_game)>=0?'+':'')+x.diff_game],['% Punti',pct2(x.punti_pct)],['% Partite',pct(x.partite_pct)],['Cards','🃏 '+x.cards],['Tappe',HISTORY[name]?HISTORY[name].length:0]].map(a=>`<div class="box"><div class="label">${a[0]}</div><div class="value">${esc(a[1])}</div></div>`).join('');
   const h=Array.isArray(HISTORY[name])?HISTORY[name]:[];
   $('historyBody').innerHTML=h.slice().sort((a,b)=>Number(b.tappa)-Number(a.tappa)).map(r=>`<tr><td>${r.tappa}</td><td>${r.partite}</td><td>${r.punti}</td><td>${r.gw}</td><td>${r.gl}</td><td>${Number(r.diff)>=0?'+':''}${r.diff}</td><td>🃏 ${r.cards||0}</td></tr>`).join('') || '<tr><td colspan="7" class="empty">Nessuno storico disponibile.</td></tr>';
   $('modal').classList.add('open');
@@ -176,3 +177,4 @@ if(!DATA.length){
 </script>
 </body>
 </html>
+
