@@ -36,152 +36,68 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}
 .empty{padding:40px;text-align:center;color:#8492ad}.error{margin:18px 0;padding:14px 16px;border:1px solid #733044;background:#260c17;color:#ff9aae;border-radius:12px;display:none}
 @media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.top8{grid-template-columns:repeat(2,1fr)}.stage-grid{grid-template-columns:repeat(2,1fr)}.profile{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.page{width:100%}.hero{margin:0;border-radius:0;min-height:245px}.hero-content{min-height:245px}.nav{overflow:auto;justify-content:flex-start;padding-left:10px}.nav a{white-space:nowrap}.stats{grid-template-columns:repeat(2,1fr);padding:0 10px}.section{border-radius:14px}.section-head{align-items:flex-start;flex-direction:column}.controls{width:100%}.search{max-width:none;width:100%}.top8{grid-template-columns:1fr;padding:10px}.stage-grid{grid-template-columns:1fr;padding:10px}.profile{grid-template-columns:1fr 1fr}.logoTT{width:82vw}.logoPesaro{width:55vw}}
-.last-update-header{display:inline-block;padding:5px 12px;border:1px solid rgba(0,169,255,.28);border-radius:999px;background:rgba(5,17,39,.58);color:#a9cdf5;font-size:11px;font-weight:700;letter-spacing:.45px}.hero-title .last-update-header{font-weight:700}@media(max-width:700px){.last-update-header{display:block;margin:7px auto 0;font-size:10px;width:max-content}}</style>
-<style>
-/* --- HEADER TRAVELLING TOUR --- */
-.header-title-line{
-  position:relative;
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:34px;
+.last-update-header{display:inline-block;margin-left:16px;padding:5px 11px;border:1px solid rgba(95,175,255,.35);border-radius:999px;background:rgba(4,18,45,.55);color:#a9cfff;font-size:11px;font-weight:700;letter-spacing:.4px;vertical-align:middle}.hero-title .last-update-header{font-weight:700}@media(max-width:700px){.last-update-header{display:block;margin:7px auto 0;font-size:10px;width:max-content}}
+/* CENTRAMENTO DEFINITIVO DELLE DUE INTESTAZIONI */
+.hero-title{
+  position:relative !important;
+  width:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
 }
-.header-title-line .header-date{
-  position:absolute;
-  left:68%;
-  transform:translateX(0);
-  white-space:nowrap;
+.hero-title #lastUpdateHeader{
+  position:absolute !important;
+  left:calc(50% + 145px) !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+}
+.section-head{
+  position:relative !important;
+}
+.section-head > div:first-child{
+  flex:1 !important;
+  text-align:center !important;
+}
+.section-head > div:first-child h2,
+.section-head > div:first-child .sub{
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.section-head .controls{
+  position:absolute !important;
+  right:20px !important;
 }
 @media(max-width:800px){
-  .header-title-line{flex-wrap:wrap;gap:7px}
-  .header-title-line .header-date{
-    position:static;
-    transform:none;
-    width:100%;
-    text-align:center;
+  .hero-title{
+    display:block !important;
+  }
+  .hero-title #lastUpdateHeader{
+    position:static !important;
+    transform:none !important;
+    display:block !important;
+    width:max-content !important;
+    margin:8px auto 0 !important;
+  }
+  .section-head .controls{
+    position:static !important;
+    margin:12px auto 0 !important;
   }
 }
-
-/* --- PALETTE UNICA ABBINATA ALL'INTESTAZIONE --- */
-:root{
-  --page-blue:#061126;
-  --page-blue-2:#0a1733;
-  --panel-blue:#0c1933;
-  --panel-blue-2:#101f3d;
-  --line-blue:#29456f;
-  --header-cyan:#00a9ff;
-  --header-purple:#8b20ff;
-  --header-purple-2:#d000ff;
-}
-
-body{
-  background:
-    radial-gradient(ellipse at 8% 0%,rgba(0,130,255,.20),transparent 32%),
-    radial-gradient(ellipse at 92% 0%,rgba(190,0,255,.17),transparent 32%),
-    linear-gradient(180deg,#050b1c 0%,#07132c 35%,#08152e 68%,#050a18 100%) !important;
-  color:#f4f7ff;
-}
-
-/* Pannelli, cards e blocchi principali */
-.card,.panel,.stat,.section,.ranking-box,.hero-box{
-  background:linear-gradient(145deg,rgba(11,28,58,.96),rgba(7,16,36,.96)) !important;
-  border-color:rgba(57,103,165,.52) !important;
-}
-
-/* Navigazione */
-nav,.nav,.menu{
-  background:linear-gradient(90deg,rgba(4,13,31,.98),rgba(12,12,39,.98)) !important;
-  border-color:rgba(62,99,157,.48) !important;
-}
-
-/* Tabella classifica */
-.rank-table{
-  background:rgba(5,13,29,.90) !important;
-  border-color:rgba(52,89,143,.55) !important;
-}
-.rank-table thead th{
-  background:linear-gradient(90deg,#0a1935,#10172f,#161036) !important;
-  color:#cce8ff !important;
-  border-color:rgba(56,94,148,.55) !important;
-}
-.rank-table tbody tr:nth-child(odd){
-  background:rgba(13,29,57,.88) !important;
-}
-.rank-table tbody tr:nth-child(even){
-  background:rgba(7,19,40,.92) !important;
-}
-.rank-table tbody tr:hover{
-  background:linear-gradient(90deg,rgba(0,137,255,.14),rgba(139,32,255,.13)) !important;
-}
-.rank-table td{
-  border-color:rgba(43,73,118,.38) !important;
-}
-
-/* Testi/etichette */
-.muted,.sub,.subtitle,.k{
-  color:#9cb9dc !important;
-}
-
-/* Campi ricerca/select */
-input,select{
-  background:#07142b !important;
-  color:#eef6ff !important;
-  border-color:#29466f !important;
-}
-input::placeholder{color:#7792b6 !important}
-
-/* Bottoni / pillole */
-button,.btn,.chip{
-  background:linear-gradient(135deg,#0b2346,#12143a) !important;
-  border-color:#31598d !important;
-  color:#eaf5ff !important;
-}
-button:hover,.btn:hover{
-  border-color:#00a9ff !important;
-  box-shadow:0 0 16px rgba(0,169,255,.18),0 0 16px rgba(139,32,255,.10);
-}
-
-/* Colonna % punti: stessa atmosfera della testata, mantenendo il verde leggibile */
-.pct{
-  background:linear-gradient(90deg,rgba(0,169,255,.13),rgba(139,32,255,.10)) !important;
-}
-
-/* Barre partecipazione */
-.progress,.bar,.track{
-  background:#0a1931 !important;
-  border-color:#29466f !important;
-}
-
-/* Link */
-a{color:#b9dcff}
-a:hover{color:#00b7ff}
-
-/* Ultima tappa / statistiche */
-.stat .v{
-  color:#f7fbff;
-  text-shadow:0 0 10px rgba(0,169,255,.10);
-}
-
-/* Effetto leggerissimo comune a tutta la pagina */
-.page:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(115deg,transparent 0%,rgba(0,169,255,.025) 45%,transparent 65%),
-    linear-gradient(245deg,transparent 20%,rgba(139,32,255,.025) 55%,transparent 80%);
-  z-index:-1;
-}
-</style></head>
+</style>
+</head>
 <body>
 <div class="page">
   <div class="hero" id="home">
     <div class="hero-content">
       <img class="logoTT" src="assets/travelling-tour.png" alt="TRAVELLING TOUR" onerror="this.onerror=null;this.src='assets/image3.png'">
       <img class="logoPesaro" src="assets/pesaro-padel.png" alt="PESARO PADEL" onerror="this.onerror=null;this.src='assets/image2.png'">
-      <div class="hero-title">CLASSIFICA UFFICIALE <span id="lastUpdateHeader" class="last-update-header header-date"></span></div>
+      <div class="hero-title">CLASSIFICA UFFICIALE <span id="lastUpdateHeader" class="last-update-header"></span></div>
     </div>
   </div>
 
