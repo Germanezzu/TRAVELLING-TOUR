@@ -1,4 +1,4 @@
-window.TRAVELLING_META = {"lastStage":41,"players":106,"updatedAt":"2026-09-24 08:46:48"};
+window.TRAVELLING_META = {"lastStage":41,"players":106,"updatedAt":"2026-09-24 08:51:34"};
 
 window.TRAVELLING_DATA = [
 {"posizione":1,"giocatore":"David Caposiena","partite":66,"punti_pct":0.808080808080808,"punti":160,"gw":368,"gl":189,"diff_game":179,"partite_pct":0.53,"cards":8},
